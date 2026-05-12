@@ -1,0 +1,2772 @@
+@charset "UTF-8";
+
+/* 共通 */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  text-align: center;
+  background-color: #fefff8;
+  color: #000000;
+}
+
+#loading {
+  position: fixed;
+  inset: 0;
+  background: #fefff8;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.6s ease;
+}
+
+#loading.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading_figure video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+  clip-path: inset(0px 0px 99.9% 99.9%);
+  border: 0;
+}
+
+header {
+  width: 100%;
+  color: #4A3A32;
+  font-family: 'Fraunces', serif;
+}
+
+.header_logo {
+  letter-spacing: 0.2em;
+  font-weight: 400;
+  margin-right: auto;
+  display: block;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInNav 1.5s ease forwards;
+}
+
+.header_nav  {
+  margin-right: 57px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInNav 1.5s ease forwards;
+}
+
+@keyframes fadeInNav {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.to_top {
+  position: fixed;
+  right: 5px;
+  bottom: 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.to_top.is-show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+.to_top.is-show {
+  animation: floatUpDown 2.5s ease-in-out infinite;
+}
+
+.footer {
+  background-color: #7A6A60;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fefff8;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 14px;
+}
+
+.main_visual {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.main_visual_figure {
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.main_visual_figure video {
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  animation: fadeInZoom 2s ease 0.3s forwards;
+  display: block;
+}
+
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.01);
+  }
+  60% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.fade-in.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mv_text {
+  width: 100%;
+  text-align: center;
+  color: #7A6A60;
+  font-family: 'Fraunces', serif;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: 1s ease;
+  font-weight: 700;
+}
+
+.mv_text.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 163px;
+  padding: 17px 0;
+  font-family: 'Fraunces', serif;
+  background: #fefff8;
+  color: #4A3A32;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 7px;
+  border: 1px solid #4A3A32;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #bfd8b8;
+  color: #ffffff;
+  border-color: #bfd8b8;
+}
+
+.btn_inner {
+  position: relative;
+  display: inline-block;
+}
+
+.heading {
+  position: relative;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  color: #4a3a32;
+  letter-spacing: 0.2em;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+
+/* work_itemのテキスト共通 */
+.works_item_title,
+.works_item_type,
+.works_item_description,
+.work_item_link {
+  letter-spacing: 0.1em;
+  font-weight: 400;
+}
+
+.work_item_link {
+  text-align: right;
+  font-family: 'Fraunces', serif;
+}
+
+/* work_itemのテキスト色 */
+.works_item_title,
+.works_item_description,
+.work_item_link {
+  color: #7a6a60;
+}
+
+.works_item_type {
+  color: #b9a193;
+}
+
+.contact_text {
+  letter-spacing: 0.1em;
+  color: #7a6a60;
+  position: relative;
+  display: block;
+  z-index: 0;
+}
+
+.contact_mail {
+  letter-spacing: 0.1em;
+  color: #7a6a60;
+}
+
+.contact_box {
+  position: relative;
+  z-index: 0;
+  text-align: center;
+}
+
+.contact_box::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.contact_text,
+.contact_mail {
+  position: relative;
+  z-index: 1;
+}
+
+.contact_mail::after {
+  content: "";
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  background: url("../img/contact1.png") no-repeat center / contain;
+}
+
+/* =========================
+  【共通】work（制作物単体）ページ
+========================= */
+
+.main_visual_work_figure img {
+  width: 100%;
+  display: block;
+  filter: blur(6px);
+  animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+}
+
+@keyframes focusIn {
+  to {
+    filter: blur(0);
+  }
+}
+
+.main_visual_work_title {
+  display: inline-flex;
+  align-items: center;
+  align-items: flex-start;
+  font-weight: 400;
+  color: #7a6a60;
+  text-align: left;
+  position: relative; 
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInNav 2s ease 0.5s forwards;
+}
+
+.main_visual_work_title::before,
+.main_visual_work_title::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  aspect-ratio: 14 / 9;
+  background: no-repeat center / contain;
+  filter: blur(6px);
+  transition:
+    filter 1.2s ease;
+  z-index: 1;
+}
+
+.main_visual_work_title.is-show::before,
+.main_visual_work_title.is-show::after {
+  filter: blur(0);
+}
+
+.work_description_list {
+  list-style: none;
+  position: relative;
+}
+
+.work_description_list li:last-child {
+  border-bottom: 1px solid #D4C7B7;
+}
+
+.work_screen_image_title::before {
+  content: "";
+  position: absolute;
+  background-image: url("../img/work_screen_image1.png");
+  width: 170px;
+  height: 57px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition:
+    transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 1.4s ease,
+    filter 1.2s ease;
+  opacity: 0;
+  transform: translateY(40px) scale(0.92);
+  filter: blur(4px);
+
+}
+
+.work_screen_image_title.is-show::before {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+
+/* =========================
+  【共通】all works（制作物一覧）ページ
+========================= */
+.page_title {
+  color: #4A3A32;
+  font-weight: 400;
+  font-family: 'Fraunces', serif;
+  letter-spacing: 0.2em;
+  position: relative;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInNav 2s ease 0.5s forwards;
+}
+
+.page_title::before,
+.page_title::after {
+  content: "";
+  position: absolute;
+  aspect-ratio: 14 / 9;
+  background: no-repeat center / contain;
+  filter: blur(6px);
+  transition:
+    filter 1.2s ease;
+}
+
+.page_title.is-show::before,
+.page_title.is-show::after {
+  filter: blur(0);
+}
+
+.work_figure img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  filter: blur(6px);
+  animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+}
+
+.all_works_wrapper {
+  display: grid;
+  column-gap: clamp(80px, 5vw, 120px);
+  justify-items: center;
+}
+
+.work_item {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.work_title {
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-align: left;
+  color: #7A6A60;
+}
+
+.work_text_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.work_text {
+  color: #b9a193;
+  text-align: left;
+  letter-spacing: 0.1em;
+}
+
+.work_title,
+.work_text {
+  filter: blur(6px);
+  animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+}
+
+/* 下部の装飾1 */
+.all_works_deco.is-show,
+.about_deco.is-show {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* 下部の装飾2 */
+.all_works_deco.is-show::after {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.strengths_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+  position: relative;
+}
+
+.strengths_text_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #7a6a60;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+  text-align: left;
+}
+
+.strengths_text {
+  position: relative;
+}
+
+.career_open_close {
+  display: none;
+  flex-direction: column;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition:
+    max-height 0.9s ease,
+    opacity 0.7s ease;
+}
+
+.career_card:last-child {
+  margin-bottom: 0;
+}
+
+.btn_inner_about {
+  position: relative;
+}
+
+.btn--about.is-open .btn_inner_about::after {
+  background: url("../img/career2.png") no-repeat center / contain;
+}
+
+/* スマホ 〜 タブレット版 */
+@media (max-width: 1023px) {
+
+  .loading_figure {
+    width: min(90%, 400px);
+  }
+
+  .header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header_logo {
+    font-size: 30px;
+    margin-left: 25px;
+  }
+
+  .to_top img {
+    width: clamp(90px, 4vw, 140px);
+    height: auto;
+  }
+
+
+  .main_visual_figure {
+    width: min(90%, 600px);
+  }
+
+  .mv_text {
+    padding-top: 50px;
+    font-size: 15px;
+  }
+
+  .hamburger {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 102; /* ポップアップより上 */
+    width: 40px;
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    background: none;
+    border: none;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInNav 1.5s ease forwards;
+  }
+
+  .hamburger .line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #4A3A32;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+  }
+
+  /* バツに変形 */
+  .hamburger.is-active .line1 {
+    transform: rotate(45deg) translate(9px, 10px);
+    background-color: #4A3A32;
+  }
+  .hamburger.is-active .line2 {
+    opacity: 0;
+  }
+  .hamburger.is-active .line3 {
+    transform: rotate(-45deg) translate(9px, -10px);
+    background-color: #4A3A32;
+  }
+
+  .header_nav_list {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    color: #4A3A32;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    
+  }
+
+  .header_nav {
+    top: -100%;
+    height: 100dvh;
+    position: fixed;
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    background: #fefff8;
+    z-index: 101;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: top 0.5s ease;
+  }
+
+  .header_nav_item {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  /* nav上の画像の親 */
+  .nav_images {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  /* nav上の画像共通 */
+  .nav_image {
+    position: absolute;
+    height: auto;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: 
+      opacity 0.8s ease,
+      transform 1s ease-out;
+  }
+
+  .header_nav.is-open .nav_image {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  
+  .header_nav.is-open .nav_image1 {
+    transition-delay: 0.5s;
+  }
+
+  .header_nav.is-open .nav_image2 {
+    transition-delay: 0.8s;
+  }
+
+  /* nav上の画像右上 */
+  .nav_image1 {
+    top: 10%;
+    right: 10%;
+    width: clamp(100px, 25vw, 180px);
+  }
+
+  /* nav上の画像左下 */
+  .nav_image2 {
+    bottom: 10%;
+    left: 10%;
+    width: clamp(150px, 30vw, 230px);
+  }
+
+  .header_nav.is-open {
+    top: 0;
+  }
+
+  .header_nav.is-open .header_nav_item {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 
+      opacity 0.8s ease,
+      transform 1s ease-out;
+  }
+
+  .header_nav.is-open .header_nav_item:nth-child(1) {
+    transition-delay: 1.2s; 
+  }
+
+  .header_nav.is-open .header_nav_item:nth-child(2) {
+    transition-delay: 1.4s;
+  }
+
+  .header_nav.is-open .header_nav_item:nth-child(3) {
+    transition-delay: 1.6s;
+  }
+
+  /* about_site上の画像の親 */
+  .about_site {
+    position: relative;
+    padding: 160px 20px 90px 20px;
+    letter-spacing: 0.15em;
+    line-height: 1.73;
+    color: #7a6a60;
+  }
+
+  /* about_site上の画像上 */
+  .about_site_image1 {
+    position: absolute;
+    opacity: 0;
+    top: 13%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+    width: clamp(60px, 20vw, 80px);
+  }
+
+  /* about_site上の画像下左 */
+  .about_site_image2 {
+    opacity: 0;
+    position: absolute;
+    bottom: 30%;
+    left: 10%;
+    width: clamp(90px, 20vw, 100px);
+  }
+
+  /* about_site上の画像下右 */
+  .about_site_image3 {
+    opacity: 0;
+    position: absolute;
+    bottom: 40%;
+    right: 10%;
+    width: clamp(38px, 25vw, 45px);
+  }
+
+  /* about_site上の画像下中央 */
+  .about_site_image4 {
+    position: absolute;
+    opacity: 0;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px) scale(0.95);
+    width: clamp(140px, 30vw, 160px);
+  }
+
+  .about_site_image1.is-show, 
+  .about_site_image4.is-show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .about_site_image2.is-show, 
+  .about_site_image3.is-show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .about_site_title {
+    font-size: 16px;
+    margin: 20px 0 40px 0;
+    text-align:  center;
+  }
+
+  .about_site_text {
+    font-size: 15px;
+    line-height: 1.8;
+    letter-spacing: 0.15em;
+    margin-bottom: 218px;
+    text-align: center;
+  }
+
+  .contact_image_left,
+  .contact_image_right,
+  .cursor,
+  .sketch_illustration::-webkit-scrollbar {
+    display: none;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .works {
+    padding: 156px 20px 400px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  
+  .heading::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 170px;
+    height: 57px;
+    background: url("../img/heading1.png") no-repeat center/contain;
+  }
+
+  .heading--contact::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-120%, -50%) rotate(-8deg);
+    transform-origin: center bottom;
+    width: 100px;
+    height: 86px;
+    background: url("../img/heading_contact_sp1.png") no-repeat center/contain;
+  }
+
+  .heading--contact::after {
+    content: "";
+    position: absolute;
+    top: 115%;
+    right: 35%;
+    transform: translate(120%, -50%);
+    width: 63px;
+    height: 72px;
+    background: url("../img/heading_contact_sp2.png") no-repeat center/contain;
+  }
+
+  .works_list {
+    display: flex;
+    gap: 80px;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 70px;
+  }
+
+  .work_item_wrapper {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+
+  .work_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* work_itemのテキストサイズ */
+  .works_item_description,
+  .work_item_link {
+    font-size: 16px;
+  }
+   
+  .works_item_type {
+    font-size: 15px;
+  }
+
+  /* work_itemのテキスト個別 */
+  .works_item_title {
+    position: relative;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .title1::before {
+    content: "";
+    position: absolute;
+    left: -5%;
+    top: -20%;
+    transform: translate(-20px, -50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 35px;
+    height: 35px;
+    background: url("../img/work3.png") no-repeat center/contain;
+  }
+
+  .title2::before {
+    content: "";
+    position: absolute;
+    right: 10%;
+    top: 40%;
+    transform: translate(30px, 50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 35px;
+    height: 35px;
+    background: url("../img/work4.png") no-repeat center/contain;
+  }
+
+  .title3::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -900%;
+    transform: translate(-20px, -50%) scale(0.8) scaleX(-1);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 35px;
+    height: 35px;
+    background: url("../img/work5.png") no-repeat center/contain;
+  }
+
+  .title4::before {
+    content: "";
+    position: absolute;
+    right: 10%;
+    top: -40%;
+    transform: translate(40px, 50%) scale(0.8) scaleX(-1);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 30px;
+    height: 30px;
+    background: url("../img/work6.png") no-repeat center/contain;
+  }
+
+  .title1.is-show::before,
+  .title2.is-show::before   {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+
+  .title3.is-show::before,
+  .title4.is-show::before   {
+    transform: translateY(-50%) scale(1) scaleX(-1);
+    opacity: 1;
+  }
+
+
+
+  .works_item_type,
+  .works_item_description {
+    margin-bottom: 35px;
+    text-align: left;
+  }
+
+  .works_item_description {
+    max-width: 390px;
+    height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* ←2行で省略 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .works_item_image {
+    max-width: 450px;
+    flex: 0 0 auto;
+  }
+
+  .works_item_image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* ボタン下画像 */
+  .btn_inner::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 20%);
+    width: clamp(390px, 48vw, 590px);
+    aspect-ratio: 390 / 271;
+    background: url("../img/work1.png") no-repeat center / contain;
+  }
+
+  .contact {
+    padding: 90px 20px;
+    background-color: #EFE4D6;
+  }
+
+  .contact_text, .contact_mail  {
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .contact_box {
+    padding: 180px 20px; 
+  }
+
+  .contact_box::before {
+    width: clamp(363px, 60vw, 500px);
+    aspect-ratio: 363 / 363;
+    background: url("../img/contact_frame_sp.png") no-repeat center / contain;
+    z-index: -1;
+  }
+
+  .contact_mail::after {
+    transform: translateX(-50%);
+    width: 86px;
+    height: 41px;
+  }
+
+  .contact_image_sp_left {
+    position: absolute;
+    top: 5%;
+    left: 15%;
+    opacity: 0;
+    transform: translate(-30%, -20%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(152px, 15vw, 200px);
+  }
+
+  .contact_image_sp_right {
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+    opacity: 0;
+    transform: translate(30%, 50%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(154px, 15vw, 200px);
+  }
+
+  .contact_image_sp_left.is-show {
+    opacity: 1;
+    transform: translate(-30%, -30%) scale(1);
+  }
+
+  .contact_image_sp_right.is-show {
+    opacity: 1;
+    transform: translate(30%, 30%) scale(1);
+  }
+
+  /* =========================
+   work（制作物単体）ページ
+  ========================= */
+  .main_visual_work {
+    padding: 70px 20px;
+    text-align: left;
+  }
+
+  .main_visual_work_figure {
+    width: clamp(280px, 80vw, 700px);
+    margin: 0 auto;
+  }
+
+  .pc-img img {
+    width: 100%;
+    height: auto;
+  }
+
+  .sp-img img {
+    width: 300px;
+    height: auto;
+  }
+
+  .main_visual_work_title {
+    margin-bottom: 20px;
+    margin-left: 60px;
+    font-size: 25px;
+  }
+
+  .main_visual_work_title::before {
+    top: 50%;
+    right: 90%;
+    transform: translateY(-50%);
+    background-image: url("../img/page_title1.png");
+  }
+
+  .main_visual_work_title::after {
+    top: 50%;
+    left: 90%;
+    transform: translateY(-50%);
+    background-image: url("../img/page_title2.png");
+  }
+
+  .work_description,
+  .all_works,
+  .about {
+    padding: 90px 20px;
+  }
+
+  .work_description_list li {
+    padding: 35px;
+    border-top: 1px solid #D4C7B7;
+  }
+  
+   /* 説明欄左上、スキル表右上、strengths左上、career左上、sketchテキスト左の装飾画像共通 */
+  .work_description_list::before,
+  .skill_card_wrapper::before,
+  .strengths_wrapper::before,
+  .career_wrapper::before,
+  .sketch_text_closing::before,
+  .sketch_text_closing::after {
+    content: "";
+    position: absolute;
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    opacity: 0;
+    transform: translateY(40px) scale(0.92) scaleX(-1);
+    filter: blur(4px);
+  }
+
+  /* 説明欄右上の装飾画像 */
+  .work_description_list::before {
+    top: -55px;
+    right: 0;
+    width: clamp(90px, 11vw, 150px);
+    aspect-ratio: 144 / 90;
+    background: url("../img/work_description1.png") no-repeat center/contain;
+  }
+
+  .work_description_list.is-show::before,
+  .skill_card_wrapper.is-show::before,
+  .strengths_wrapper.is-show::before,
+  .sketch_text_closing.is-show::before
+   {
+    transform: translateY(0) scale(1) scaleX(-1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .work_description_item {
+    color: #7A6A60;
+    font-size: 13px;
+    display: grid;
+    align-items: start;
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  /* 説明欄右下、スキル表左下の装飾画像共通 */
+  .work_description_item:last-of-type::before,
+  .skill_card:last-of-type::after,
+  .strengths_text_wrapper:last-of-type .strengths_text::after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px) scale(0.92) scaleX(-1);
+    filter: blur(4px);
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.4s,
+      opacity 1.4s ease 0.4s,
+      filter 1.2s ease 0.4s;
+  }
+
+  /* 説明欄左下の装飾画像 */
+  .work_description_item:last-of-type::before {
+    bottom: -40px;
+    left: 0;
+    width: clamp(70px, 8vw, 100px);
+    aspect-ratio: 90 / 90;
+    background: url("../img/work_description2.png") no-repeat center/contain;
+  }
+
+  .work_description_item:last-of-type.is-show::before,
+  .skill_card:last-of-type.is-show::after,
+  .strengths_text_wrapper:last-of-type .strengths_text.is-show::after {
+    transform: translateY(0) scale(1) scaleX(-1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .work_description_label {
+    text-align: left;
+    font-weight: 700;
+  }
+
+  .work_description_text,
+  .work_screen_image_title {
+    font-size: 14px;
+    text-align: left;
+    color: #7A6A60;
+  }
+
+  .work_screen_image {
+    padding: 90px 20px;
+  }
+
+  .work_screen_image_title {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .work_screen_image_title::before {
+    top: -15px;
+    right: -80px;
+  }
+
+  .work_screen_image_container {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin: 0 auto;
+    gap: 50px;
+  }
+
+  .work_screen_image_container:not(:last-of-type) {
+    margin-bottom: 100px;
+  }
+
+  .work_screen_image_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(100px, 14vw, 400px);
+  }
+
+  .btn_inner_work {
+    position: relative;
+  }
+
+  /* ボタン下画像 */
+  .btn_inner_work::after {
+    content: "";
+    left: 50%;
+    bottom: -350px;
+    position: absolute;
+    width: clamp(390px, 48vw, 590px);
+    aspect-ratio: 390 / 271;
+    margin: 70px auto 0;
+    background: url("../img/all_works_deco_sp.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.96);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .btn_inner_work.is-show::after {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .btn--work {
+    margin: 90px 0 341px 0;
+  }
+
+  /* =========================
+   all works（制作物一覧）ページ
+  ========================= */
+  .page_title {
+    font-size: 25px;
+    margin-bottom: 70px;
+  }
+
+  .page_title::before,
+  .page_title::after {
+    width: 100px;
+  }
+
+  .page_title::before {
+    top: -20px;
+    left: 50%;
+    transform: translateX(-190px);
+    background-image: url("../img/page_title1.png");
+  }
+
+  .page_title::after {
+    top: -20px;
+    left: 50%;
+    transform: translateX(90px);
+    background-image: url("../img/page_title2.png");
+  }
+
+  .all_works_wrapper {
+    grid-template-columns: 1fr;
+    row-gap: 80px;
+  }
+
+  .work_title {
+    font-size: 18px;
+  }
+
+  .work_text_wrapper {
+    gap: 5px;
+  }
+
+  .work_text {
+    font-size: 13px;
+  }
+
+  /* 下部の装飾1 */
+  .all_works_deco,
+  .about_deco {
+    position: relative;
+    display: block;
+    width: min(100%, 600px);
+    aspect-ratio: 390 / 271;
+    margin: 70px auto 0;
+    background: url("../img/all_works_deco_sp.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  /* 下部の装飾2 */
+  .all_works_deco::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: clamp(80px, 34vw, 220px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/all_works_deco2.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(-80%) translateY(30px) scale(0.95);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease 0.4s,
+      transform 1.2s ease 0.4s,
+      filter 1.2s ease 0.4s;
+  }
+
+  .all_works_deco.is-show::after {
+    transform: translateX(-80%) translateY(0) scale(1);
+  }
+
+  /* =========================
+   aboutページ
+  ========================= */
+  .self_introduction{
+    padding: 70px 20px;
+  }
+
+  .self_introduction_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+  }
+
+  .self_introduction_image {
+    width: clamp(390px, 30vw, 600px);
+    min-width: 390px;
+    flex-shrink: 0;
+  }
+
+  .self_introduction_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: clamp(39px, 3vw, 80px);
+    color: #7a6a60;
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+  }
+  .self_introduction_title,
+  .self_introduction_text,
+  .self_introduction_image {
+    filter: blur(6px);
+    animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+  }
+  .self_introduction_title {
+    font-size: 25px;
+    position: relative;
+  }
+
+  .self_introduction_text,
+  .strengths_text {
+    font-size: 15px;
+  }
+
+  .self_introduction_title::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: 20%;
+    width: clamp(81px, 8vw, 120px);
+    aspect-ratio: 81 / 60;
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(4px);
+    background: url("../img/self_introduction1.png") no-repeat center / contain;
+  }
+
+  .self_introduction_title.is-show::after
+   {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .skills {
+    padding: 150px 20px 90px 20px;
+  }
+
+  .skill_card_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+  }
+
+  .skill_card {
+    background-color: #efe4d6;
+    padding: 40px 18px;
+    border-radius: 15px;
+    position: relative;
+  }
+
+  .skill_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    color: #7a6a60;
+  }
+
+  .skill_title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .skill_text {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 15px;
+    text-align: left;
+  }
+
+  /* スキル表右上の装飾画像 */
+  .skill_card_wrapper::before {
+    top: -5%;
+    right: 0%;
+    width: clamp(106px, 6vw, 120px);
+    aspect-ratio: 106 / 83;
+    background: url("../img/work_screen_image1.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+    z-index: 1;
+  }
+
+  .skill_card_wrapper.is-show::before {
+    transform: translateY(0) scale(1) ;
+  }
+
+  /* スキル表左上の装飾画像 */
+  .skill_card:last-of-type::after {
+    bottom: -20%;
+    left: 0%;
+    width: clamp(95px, 6vw, 130px);
+    aspect-ratio: 95 / 74;
+    background: url("../img/skill_card_wrapper.png") no-repeat center/contain;
+    transform: translateY(20px) scale(0.92);
+  }
+
+  .skill_card:last-of-type.is-show::after
+  {
+    transform: translateY(0) scale(1);
+  }
+
+  .strengths {
+    padding: 150px 20px 270px 20px;
+  }
+
+  .strengths .heading::before {
+    background: url("../img/heading2.png") no-repeat center/contain;
+  }
+
+  .strengths_title {
+    font-size: 20px;
+  }
+
+  /* strengths右上の装飾画像 */
+  .strengths_wrapper::before {
+    top: -5%;
+    right: 10%;
+    width: clamp(21px, 6vw, 30px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/strengths1.png") no-repeat center/contain;
+  }
+
+  /* strengths下の装飾画像 */
+  .strengths_text_wrapper:last-of-type .strengths_text::after {
+    bottom: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(230px, 20vw, 300px);
+    aspect-ratio: 270 / 176;
+    background: url("../img/strengths2.png") no-repeat center/contain;
+    transform: translateX(-50%) translateY(20px) scale(0.92)
+  }
+
+  .strengths_text_wrapper:last-of-type .strengths_text.is-show::after {
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .career {
+    padding: 200px 0 400px 0;
+    background-color: #efe4d6;
+  }
+
+  .career_inner {
+    padding: 0 20px;
+  }
+
+  .career_card {
+    background-color: #fefff8;
+    border-radius: 15px;
+    padding: 40px 18px;
+    color: #7a6a60;
+    margin-bottom: 45px;
+  }
+
+  .career_wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  /* career左上の装飾画像 */
+  .career_wrapper::before {
+    top: -35px;
+    left: -20px;
+    width: clamp(88px, 10vw, 180px);
+    aspect-ratio: 88 / 61;
+    background: url("../img/career3.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+  }
+
+  .career_wrapper.is-show::before,
+  .sketch_text_closing.is-show::after {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .career_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .career_text_detail_wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 30px;
+  }
+
+  .career_year {
+    font-size: 14px;
+  }
+
+  .career_title {
+    font-size: 18px;
+    letter-spacing: 0.17em;
+  }
+
+  .career_text {
+    font-size: 15px;
+    letter-spacing: 0.15em;
+    line-height: 1.7;
+  }
+
+  .career_open_close.is-open {
+    max-height: 2300px;
+    display: flex;
+    opacity: 1;
+  }
+
+  .btn--about {
+    display: block;
+    margin: 0 auto;
+    margin-top: 70px;
+  }
+
+  /* career open/closeボタン下画像 */
+  .btn_inner_about::after {
+    content: "";
+    left: 50%;
+    bottom: -350px;
+    position: absolute;
+    width: clamp(390px, 48vw, 590px);
+    aspect-ratio: 390 / 271;
+    margin: 70px auto 0;
+    background: url("../img/career1.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.96);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .btn_inner_about.is-show::after {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  .sketch {
+    padding: 150px 20px 90px 20px;
+  }
+
+  .sketch_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    color: #7a6a60;
+    text-align: left;
+    letter-spacing: 0.15em;
+    line-height: 2;
+  }
+
+  .sketch_text_introduction {
+    font-size: 15px;
+  }
+
+  .sketch_text {
+    font-size: 17px;
+  }
+
+  .sketch_illustration {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 10px;
+  }
+
+  .sketch_illustration img {
+    flex: 0 0 80%;
+    width: 80%;
+    max-width: 450px;
+    min-width: unset;
+    scroll-snap-align: center;
+    border-radius: 12px;
+    height: auto;
+  }
+
+  .sketch_text_closing {
+    color: #7a6a60;
+    text-align: left;
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-size: 15px;
+    margin: 80px 0 80px;
+    position: relative;
+  }
+
+  /* sketchテキスト左の装飾画像 */
+  .sketch_text_closing::before {
+    top: -50px;
+    left: 5%;
+    width: clamp(90px, 10vw, 140px);
+    aspect-ratio: 106 / 83;
+    background: url("../img/work_description3.png") no-repeat center/contain;
+  }
+
+  /* sketchテキスト右の装飾画像 */
+  .sketch_text_closing::after {
+    top: 50px;
+    right: 15%;
+    width: clamp(35px, 6vw, 40px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/work4.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 0.4s;
+  }
+
+  .about_deco {
+    transition:
+      opacity 1.2s ease,
+      transform 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 1s;
+    background: url("../img/about_deco_sp.png") no-repeat center / contain;
+  }
+}
+
+
+/* PC版 */
+@media (min-width: 1024px) {
+
+  .loading_figure {
+    width: min(90%, 600px);
+  }
+
+  .header {
+    height: 90px;
+    display: flex;
+    align-items: center;
+  }
+
+  .header_logo {
+    font-size: 37px;
+    margin-left: 84px;
+  }
+
+  .header_nav .header_nav_list{
+    display: flex;
+    gap: 34px;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .to_top img {
+    width: clamp(150px, 4vw, 190px);
+    height: auto;
+  }
+
+  .main_visual_figure {
+    width: min(90%, 800px);
+  }
+
+  .mv_text {
+    font-size: 20px;
+  }
+
+  .hamburger, 
+  .header_logo_sp, 
+  .nav_images,
+  .contact_text br,
+  .contact_image_sp_left,
+  .contact_image_sp_right,
+  .sp_only
+  {
+    display: none;
+  }
+
+  /* about_site上の画像の親 */
+  .about_site {
+    position: relative;
+    letter-spacing: 0.15em;
+    line-height: 1.73;
+    color: #7a6a60;
+    padding: 140px 160px;
+  }
+
+  /* about_site上の画像共通 */
+  .about_site_image {
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: 
+      opacity 0.8s ease,
+      transform 1s ease-out;
+  }
+
+  /* about_site上の画像左上 */
+  .about_site_image1 {
+    opacity: 0;
+    top: 5%;
+    left: 11%;
+    width: clamp(100px, 25vw, 120px);
+  }
+
+  /* about_site上の画像左下 */
+  .about_site_image2 {
+    opacity: 0;
+    bottom: 30%;
+    left: 11%;
+    width: clamp(100px, 30vw, 140px);
+  }
+
+  /* about_site上の画像右上 */
+  .about_site_image3 {
+    opacity: 0;
+    top: 30%;
+    right: 11%;
+    width: clamp(37px, 25vw, 45px);
+  }
+
+  /* about_site上の画像右下 */
+  .about_site_image4 {
+    opacity: 0;
+    bottom: 25%;
+    right: 11%;
+    width: clamp(186px, 25vw, 200px);
+  }
+
+  .about_site_image1.is-show, 
+  .about_site_image4.is-show,
+  .about_site_image2.is-show, 
+  .about_site_image3.is-show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+
+  .about_site_title {
+    font-size: 24px;
+    margin-bottom: 27px;
+  }
+
+  .about_site_text {
+    font-size: 20px;
+    line-height: 1.73;
+    letter-spacing: 0.15em;
+    margin-bottom: 100px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -40px;
+    transform: translate3d(0,0,0) scale(0.8);
+    width: 80px;
+    height: 80px;
+    background: url("../img/btn2.png") no-repeat center/contain;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    will-change: transform, opacity;
+
+  }
+
+  .btn:hover::before {
+    opacity: 1;
+    transform: translate3d(0,0,0) scale(1);
+  }
+
+  .btn::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: calc(100% - 40px);
+    transform: translate3d(0,0,0) scale(0.8);
+    background: url("../img/btn1.png") no-repeat center/contain;
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0.2s;
+    pointer-events: none;
+    will-change: transform, opacity;
+
+  }
+
+  .btn:hover::after {
+    opacity: 1;
+    transform: translate3d(0,0,0) scale(1);
+  }
+
+  .works {
+    padding: 230px 160px;
+  }
+
+  .heading {
+    font-size: 38px;
+  }
+
+  .heading::before {
+    content: "";
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 216px;
+    height: 72px;
+    background: url("../img/heading1.png") no-repeat center/contain;
+  }
+
+  .heading--contact::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-120%, -50%);
+    width: 231px;
+    height: 170px;
+    background: url("../img/heading_contact1.png") no-repeat center/contain;
+  }
+
+  .heading--contact::after {
+    content: "";
+    position: absolute;
+    top: 115%;
+    right: 40%;
+    transform: translate(120%, -50%);
+    width: 202px;
+    height: 132px;
+    background: url("../img/heading_contact2.png") no-repeat center/contain;
+  }
+
+  .works_list {
+    display: flex;
+    gap: 140px;
+    justify-content: center;
+    flex-direction: column;
+    margin-bottom: 210px;
+  }
+
+  .work_item_wrapper {
+    display: flex;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .work_item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* work_itemのテキストサイズ */
+  .works_item_type,
+  .works_item_description,
+  .work_item_link {
+    font-size: 16px;
+  }
+
+  /* work_itemのテキスト個別 */
+  .works_item_title {
+    position: relative;
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  .title1::before {
+    content: "";
+    position: absolute;
+    left: -5%;
+    top: -20%;
+    transform: translate(-20px, -50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 44px;
+    height: 44px;
+    background: url("../img/work3.png") no-repeat center/contain;
+  }
+
+  .title2::before {
+    content: "";
+    position: absolute;
+    right: 40%;
+    top: 40%;
+    transform: translate(30px, 50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 44px;
+    height: 44px;
+    background: url("../img/work4.png") no-repeat center/contain;
+  }
+
+  .title3::before {
+    content: "";
+    position: absolute;
+    right: 40%;
+    top: -40%;
+    transform: translate(30px, -50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 44px;
+    height: 44px;
+    background: url("../img/work5.png") no-repeat center/contain;
+  }
+
+  .title4::before {
+    content: "";
+    position: absolute;
+    left: -5%;
+    top: -40%;
+    transform: translate(-40px, 50%) scale(0.8);
+    transition: 0.6s ease;
+    opacity: 0;
+    width: 44px;
+    height: 44px;
+    background: url("../img/work6.png") no-repeat center/contain;
+  }
+
+  .title1.is-show::before,
+  .title2.is-show::before,
+  .title3.is-show::before,
+  .title4.is-show::before  {
+    transform: translateY(-50%) scale(1);
+    opacity: 1;
+  }
+
+  .works_item_type,
+  .works_item_description {
+    margin-bottom: 37px;
+    text-align: left;
+  }
+
+  .works_item_description {
+    max-width: 550px;
+    height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* ←2行で省略 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .works_item_image {
+    flex: 1;
+    height: auto;
+    max-width: 600px;
+    overflow: hidden;
+  }
+
+  .works_item_image img {
+    width: 100%;
+    min-width: 300px;
+    transition: transform 0.8s ease;
+  }
+
+  .work_item_wrapper:hover .works_item_image img {
+    transform: scale(1.05);
+  }
+
+  /* 2,4番目だけ逆順にする */
+  .works_list a:nth-child(even) .work_item_wrapper {
+    flex-direction: row-reverse;
+  }
+
+  /* ボタン左画像 */
+  .btn_inner::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-125%, -50%);
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    background: url("../img/work1.png") no-repeat center / contain;
+  }
+
+  /* ボタン右画像 */
+  .btn_inner::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(125%, -50%);
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    background: url("../img/work2.png") no-repeat center / contain;
+  }
+
+  .contact {
+    padding: 140px 160px;
+    background-color: #EFE4D6;
+  }
+
+  .contact_text, .contact_mail {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .contact_box {
+    padding: 180px 20px; 
+  }
+
+  .contact_box::before {
+    width: clamp(1000px, 60vw, 1400px);
+    aspect-ratio: 1049 / 384;
+    background: url("../img/contact_frame.png") no-repeat center / contain;
+  }
+
+  .contact_mail::after {
+    transform: translateX(-50%);
+    width: 148px;
+    height: 70px;
+  }
+
+  .contact_image_left {
+    position: absolute;
+    bottom: 40%;
+    left: 30%;
+    opacity: 0;
+    transform: translate(-160%, 70%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(226px, 15vw, 270px);
+  }
+
+  .contact_image_right {
+    position: absolute;
+    bottom: 40%;
+    left: 70%;
+    opacity: 0;
+    transform: translate(60%, 70%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(223px, 15vw, 240px);
+  }
+
+  .contact_image_left.is-show {
+    opacity: 1;
+    transform: translate(-160%, 60%) scale(1);
+  }
+
+  .contact_image_right.is-show {
+    opacity: 1;
+    transform: translate(60%, 60%) scale(1);
+  }
+
+  /* =========================
+   work（制作物単体）ページ
+  ========================= */
+  .main_visual_work {
+    padding: 170px 160px;
+    text-align: left;
+  }
+
+  .main_visual_work_figure {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+  }
+
+  .main_visual_work_title {
+    margin-bottom: 70px;
+    font-size: 36px;
+  }
+
+  .main_visual_work_title::before {
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    background-image: url("../img/page_title1.png");
+  }
+
+  .main_visual_work_title::after {
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    background-image: url("../img/page_title2.png");
+  }
+
+  .work_description,
+  .work_screen_image,
+  .all_works,
+  .about {
+    padding: 140px 160px;
+  }
+
+  .work_description_list {
+    position: relative;
+  }
+
+  .work_description_list li {
+    padding: 44px;
+    border-top: 1px solid #D4C7B7;
+  }
+
+  /* 説明欄左上、スキル表右上、strengths左上、career左上、sketchテキスト左右の装飾画像共通 */
+  .work_description_list::before,
+  .skill_card_wrapper::before,
+  .strengths_wrapper::before,
+  .career_wrapper::before,
+  .sketch_text_closing::before,
+  .sketch_text_closing::after {
+    content: "";
+    position: absolute;
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(4px);
+  }
+
+    /* 説明欄左上の装飾画像 */
+  .work_description_list::before {
+    top: -85px;
+    left: -20px;
+    width: clamp(140px, 6vw, 200px);
+    aspect-ratio: 144 / 90;
+    background: url("../img/work_description1.png") no-repeat center/contain;
+
+  }
+
+  .work_description_list.is-show::before,
+  .skill_card_wrapper.is-show::before,
+  .strengths_wrapper.is-show::before,
+  .career_wrapper.is-show::before,
+  .sketch_text_closing.is-show::before,
+  .sketch_text_closing.is-show::after {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .work_description_item {
+    color: #7A6A60;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: clamp(30px, 6vw, 100px);
+    align-items: start;
+    position: relative;
+  }
+
+  /* 説明欄右下、スキル表左下、strengths右下の装飾画像共通 */
+  .work_description_item:last-of-type::before,
+  .skill_card:last-of-type::after,
+  .strengths_text_wrapper:last-of-type .strengths_text::after {
+    content: "";
+    position: absolute;
+    opacity: 0;
+    transform: translateY(20px) scale(0.92);
+    filter: blur(4px);
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1) 0.4s,
+      opacity 1.4s ease 0.4s,
+      filter 1.2s ease 0.4s;
+  }
+
+   /* 説明欄右下の装飾画像 */
+  .work_description_item:last-of-type::before {
+    bottom: -40px;
+    right: -20px;
+    width: clamp(90px, 6vw, 160px);
+    aspect-ratio: 90 / 90;
+    background: url("../img/work_description2.png") no-repeat center/contain;
+  }
+
+  .work_description_item:last-of-type.is-show::before,
+  .skill_card:last-of-type.is-show::after,
+  .strengths_text_wrapper:last-of-type .strengths_text.is-show::after
+   {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .work_description_label {
+    text-align: left;
+    font-weight: 700;
+  }
+
+  .work_description_text,
+  .work_screen_image_title {
+    font-size: 16px;
+    text-align: left;
+    color: #7A6A60;
+  }
+
+  .work_screen_image_title {
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .work_screen_image_title::before {
+    top: -60px;
+    left: 140px;
+  }
+
+  .work_screen_image_container {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  .work_screen_image_wrapper {
+    display: flex;
+    gap: clamp(100px, 14vw, 400px);
+    margin-bottom: 100px;
+  }
+
+  .btn_inner_work {
+    position: relative;
+  }
+
+  /* workボタン左画像 */
+  .btn_inner_work::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    background: url("../img/btn_inner_work1.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(-125%) translateY(-42%) scale(0.96);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .btn_inner_work.is-show::before {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-125%, -50%) scale(1);
+  }
+
+  /* workボタン右画像 */
+  .btn_inner_work::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    background: url("../img/btn_inner_work2.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(125%) translateY(-42%) scale(0.96);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+
+  }
+
+  .btn_inner_work.is-show::after {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(125%, -50%) scale(1);
+  }
+
+  .btn--work {
+    margin: 252px 0 105px;
+  }
+
+  /* =========================
+   all works（制作物一覧）ページ
+  ========================= */
+  .page_title {
+    font-size: 38px;
+    margin-bottom: 100px;
+  }
+
+  .work_figure {
+    overflow: hidden;
+  }
+
+  .work_figure img {
+    transition: transform 0.6s ease;
+  }
+
+  .work_item:hover .work_figure img {
+    transform: scale(1.04);
+  }
+
+  .page_title::before,
+  .page_title::after {
+    width: 161px;
+  }
+
+  .page_title::before {
+    top: -30px;
+    left: 50%;
+    transform: translateX(-280px);
+    background-image: url("../img/page_title1.png");
+  }
+
+  .page_title::after {
+    top: -30px;
+    left: 50%;
+    transform: translateX(120px);
+    background-image: url("../img/page_title2.png");
+  }
+
+  .all_works_wrapper {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 129px;
+  }
+
+  .work_title {
+    font-size: 26px;
+  }
+
+  .work_text_wrapper {
+    gap: 10px;
+  }
+
+  .work_text {
+    font-size: 16px;
+  }
+
+  .work_title,
+  .work_text {
+    filter: blur(6px);
+    animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+  }
+
+  /* all_works 下部の装飾1、about 下部の装飾共通 */
+  .all_works_deco,
+  .about_deco {
+    position: relative;
+    display: block;
+    width: min(100%, 1600px);
+    aspect-ratio: 1120 / 257;
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .all_works_deco {
+    margin: 80px auto 0;
+    background: url("../img/all_works_deco.png") no-repeat center / contain;
+  }
+
+  /* 下部の装飾2 */
+  .all_works_deco::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 27%;
+    width: clamp(88px, 10vw, 180px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/all_works_deco2.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease 0.4s,
+      transform 1.2s ease 0.4s,
+      filter 1.2s ease 0.4s;
+  }
+
+  /* =========================
+   aboutページ
+  ========================= */
+  .self_introduction{
+    padding: 100px 140px;
+  }
+
+  .self_introduction_wrapper {
+    display: flex;
+    column-gap: clamp(50px, 5vw, 100px);
+    align-items: center;
+  }
+
+  .self_introduction_image {
+    width: clamp(350px, 30vw, 600px);
+    min-width: 350px;
+    flex-shrink: 0;
+  }
+
+  .self_introduction_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: clamp(39px, 3vw, 80px);
+    color: #7a6a60;
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+  }
+  .self_introduction_title,
+   .self_introduction_text,
+   .self_introduction_image {
+    filter: blur(6px);
+    animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
+  }
+  .self_introduction_title {
+    font-size: 28px;
+    position: relative;
+  }
+
+  .self_introduction_text,
+  .strengths_title {
+    font-size: 16px;
+  }
+
+  .self_introduction_title::after {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: 80%;
+    width: clamp(110px, 8vw, 150px);
+    aspect-ratio: 144 / 90;
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    filter: blur(4px);
+    background: url("../img/self_introduction1.png") no-repeat center / contain;
+  }
+
+  .self_introduction_title.is-show::after
+   {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  .skills {
+    padding: 200px 140px 140px 140px;
+  }
+
+  .skill_card_wrapper {
+     gap: 45px;
+  }
+
+  .skill_card_wrapper,
+  .career_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .skill_card {
+    background-color: #efe4d6;
+    padding: 20px 116px;
+    border-radius: 15px;
+    position: relative;
+  }
+
+  .skill_wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    color: #7a6a60;
+  }
+
+  .skill_title {
+    flex: 1;
+    font-size: 26px;
+    text-align: left;
+    margin-left: 30px;
+  }
+
+  .skill_text {
+    display: flex;
+    flex: 1.2;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 18px;
+    text-align: left;
+  }
+
+  /* スキル表右上の装飾画像 */
+  .skill_card_wrapper::before {
+    top: -10%;
+    right: 0%;
+    width: clamp(140px, 6vw, 200px);
+    aspect-ratio: 144 / 90;
+    background: url("../img/work_screen_image1.png") no-repeat center/contain;
+  }
+
+  /* スキル表左上の装飾画像 */
+  .skill_card:last-of-type::after {
+    bottom: -30%;
+    left: 0%;
+    width: clamp(140px, 6vw, 160px);
+    aspect-ratio: 151 / 119;
+    background: url("../img/skill_card_wrapper.png") no-repeat center/contain;
+  }
+
+  .strengths {
+    padding: 200px 140px 250px 140px;
+  }
+
+  .strengths .heading::before {
+    background: url("../img/heading2.png") no-repeat center/contain;
+  }
+
+  .strengths_title {
+    font-size: 22px;
+  }
+
+  /* strengths左上の装飾画像 */
+  .strengths_wrapper::before {
+    top: -10%;
+    left: 0%;
+    width: clamp(21px, 6vw, 30px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/strengths1.png") no-repeat center/contain;
+  }
+
+  /* strengths右下の装飾画像 */
+  .strengths_text_wrapper:last-of-type .strengths_text::after {
+    bottom: -150px;
+    right: 0%;
+    width: clamp(200px, 20vw, 300px);
+    aspect-ratio: 270 / 176;
+    background: url("../img/strengths2.png") no-repeat center/contain;
+  }
+
+  .career {
+    padding: 200px 0;
+    background-color: #efe4d6;
+  }
+
+  .career_inner {
+    padding: 0 140px;
+  }
+
+  .career_card {
+    background-color: #fefff8;
+    border-radius: 15px;
+    padding: 30px 65px;
+    color: #7a6a60;
+    margin-bottom: 45px;
+  }
+
+  .career_wrapper {
+    display: flex;
+  }
+
+  /* career左上の装飾画像 */
+  .career_wrapper::before {
+    top: -65px;
+    left: 0%;
+    width: clamp(143px, 6vw, 200px);
+    aspect-ratio: 143 / 118;
+    background: url("../img/career3.png") no-repeat center/contain;
+  }
+
+  .career_text_wrapper {
+    display: flex;
+    align-items: center;
+    gap: clamp(40px, 5vw, 100px);
+  }
+
+  .career_text_detail_wrapper {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 45px;
+  }
+
+  .career_year {
+    font-size: 20px;
+    flex: 1;
+  }
+
+  .career_title {
+    font-size: 22px;
+    letter-spacing: 0.17em;
+  }
+
+  .career_text {
+    font-size: 16px;
+    letter-spacing: 0.15em;
+    line-height: 1.7;
+  }
+
+  .career_open_close.is-open {
+    max-height: 1700px;
+    display: flex;
+    opacity: 1;
+  }
+
+  .btn--about {
+    display: block;
+    margin: 0 auto;
+    margin-top: 210px;
+  }
+
+  /* career open/closeボタン左画像 */
+  .btn_inner_about::before {
+    content: "";
+    position: absolute;
+    top: -180px;
+    transform: translateX(-125%) translateY(30px) scale(0.96);
+    background: url("../img/career1.png") no-repeat center / contain;
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    opacity: 0;
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .btn_inner_about.is-show::before {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(-125%) translateY(0) scale(1);
+  }
+
+  /* career open/closeボタン右画像 */
+  .btn_inner_about::after {
+    content: "";
+    position: absolute;
+    top: -180px;
+    width: clamp(270px, 28vw, 590px);
+    height: clamp(188px, 28vw, 371px);
+    background: url("../img/career1.png") no-repeat center / contain;
+    opacity: 0;
+    transform: translateX(20%) translateY(30px) scale(0.96);
+    filter: blur(4px);
+    transition:
+      opacity 1.2s ease,
+      transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+      filter 1.2s ease;
+  }
+
+  .btn_inner_about.is-show::after {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(20%) translateY(0) scale(1);
+  }
+
+  .sketch {
+    padding: 200px 160px;
+  }
+
+  .sketch_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    color: #7a6a60;
+    text-align: left;
+    letter-spacing: 0.15em;
+    line-height: 2;
+  }
+
+  .sketch_text_introduction {
+    font-size: 16px;
+  }
+
+  .sketch_text {
+    font-size: 18px;
+  }
+
+  .sketch_illustration {
+    display: flex;
+    gap: clamp(20px, 4vw, 77px);
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .sketch_illustration img {
+    width: calc((100% - (2 * clamp(20px, 4vw, 77px))) / 3);
+    max-width: 360px;
+    min-width: 220px;
+    height: auto;
+  }
+
+  .sketch_text_closing {
+    color: #7a6a60;
+    text-align: left;
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-size: 16px;
+    margin: 100px 0 100px;
+    position: relative;
+  }
+
+  /* sketchテキスト左の装飾画像 */
+  .sketch_text_closing::before {
+    top: -50px;
+    left: 10%;
+    width: clamp(106px, 10vw, 140px);
+    aspect-ratio: 106 / 83;
+    background: url("../img/work_description3.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92) scaleX(-1);
+  }
+
+  .sketch_text_closing.is-show::before {
+    transform: translateY(0) scale(1) scaleX(-1);
+  }
+
+  /* sketchテキスト右の装飾画像 */
+  .sketch_text_closing::after {
+    top: 50px;
+    right: 20%;
+    width: clamp(40px, 6vw, 50px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/work4.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+    transition:
+      transform 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 0.4s;
+  }
+
+  .about_deco {
+    transition:
+      opacity 1.2s ease,
+      transform 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 1s;
+    background: url("../img/about_deco.png") no-repeat center / contain;
+  }
+}
+

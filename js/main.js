@@ -26,7 +26,7 @@ window.addEventListener('load', () => {
   // setTimeout 100msの理由：アニメーション初期状態が適用されるのを待つため
   setTimeout(() => {
     const targets = document.querySelectorAll(
-      '.fade-in, .works_item_title, .work_description_list , .main_visual_work_title, .page_title, .all_works_deco, .btn_inner_work, .work_screen_image_title , .self_introduction_title , .skill_card_wrapper , .strengths_wrapper , .btn_inner_about , .career_wrapper , .sketch_text_closing , .about_deco');
+      '.fade-in, .works_item_title, .work_description_list , .main_visual_work_title, .page_title, .all_works_deco, .btn_inner_work, .work_screen_image_title , .self_introduction_title , .skill_card_wrapper , .strengths_wrapper , .btn_inner_about , .career_wrapper , .sketch_text_closing , .about_deco , .heading--contact , .thanks_text , .thanks_deco');
     // 表の下部の要素もスクロール時に表示し始めたいため、最後の要素も監視対象に追加
     const lastItem = document.querySelectorAll(
       '.work_description_item:last-of-type , .skill_card:last-of-type , .strengths_text_wrapper:last-of-type .strengths_text'

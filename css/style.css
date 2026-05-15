@@ -64,17 +64,17 @@ header {
   display: block;
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeInNav 1.5s ease forwards;
+  animation: fadeIn 1.5s ease forwards;
 }
 
 .header_nav  {
   margin-right: 57px;
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeInNav 1.5s ease forwards;
+  animation: fadeIn 1.5s ease forwards;
 }
 
-@keyframes fadeInNav {
+@keyframes fadeIn {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -249,33 +249,7 @@ header {
   z-index: 0;
 }
 
-.contact_mail {
-  letter-spacing: 0.1em;
-  color: #7a6a60;
-}
-
-.contact_box {
-  position: relative;
-  z-index: 0;
-  text-align: center;
-}
-
-.contact_box::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-}
-
-.contact_text,
-.contact_mail {
-  position: relative;
-  z-index: 1;
-}
-
-.contact_mail::after {
+.contact_text::after {
   content: "";
   position: absolute;
   top: 150%;
@@ -310,7 +284,7 @@ header {
   position: relative; 
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeInNav 2s ease 0.5s forwards;
+  animation: fadeIn 2s ease 0.5s forwards;
 }
 
 .main_visual_work_title::before,
@@ -368,7 +342,8 @@ header {
 /* =========================
   【共通】all works（制作物一覧）ページ
 ========================= */
-.page_title {
+.page_title,
+.heading--contact {
   color: #4A3A32;
   font-weight: 400;
   font-family: 'Fraunces', serif;
@@ -376,11 +351,13 @@ header {
   position: relative;
   opacity: 0;
   transform: translateY(10px);
-  animation: fadeInNav 2s ease 0.5s forwards;
+  animation: fadeIn 2s ease 0.5s forwards;
 }
 
 .page_title::before,
-.page_title::after {
+.page_title::after,
+.heading--contact::before,
+.heading--contact::after {
   content: "";
   position: absolute;
   aspect-ratio: 14 / 9;
@@ -391,7 +368,9 @@ header {
 }
 
 .page_title.is-show::before,
-.page_title.is-show::after {
+.page_title.is-show::after,
+.heading--contact.is-show::before,
+.heading--contact.is-show::after {
   filter: blur(0);
 }
 
@@ -442,7 +421,8 @@ header {
 
 /* 下部の装飾1 */
 .all_works_deco.is-show,
-.about_deco.is-show {
+.about_deco.is-show,
+.thanks_deco.is-show {
   opacity: 1;
   transform: translateY(0);
   filter: blur(0);
@@ -501,6 +481,58 @@ header {
   background: url("../img/career2.png") no-repeat center / contain;
 }
 
+.form_list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.btn--contact {
+  margin: 0 auto;
+  animation: formFadeIn 1.5s ease forwards;
+}
+
+.contact_form_wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 70px;
+  animation: formFadeIn 1.5s ease forwards;
+}
+
+@keyframes formFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(7px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.form_group input,
+.form_group textarea {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #d4c7b7;
+  border-radius: 4px;
+  color: #7a6a60;
+  background-color: #FFFFFF;
+}
+
+.form_group input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fefff8 inset;
+  -webkit-text-fill-color: #7a6a60;
+}
+
+.form_group input:focus,
+.form_group textarea:focus {
+  outline: none;
+  border-color: #7a6a60;
+  box-shadow: 0 0 0 2px rgba(122, 106, 96, 0.2);
+}
+
 /* スマホ 〜 タブレット版 */
 @media (max-width: 1023px) {
 
@@ -549,7 +581,7 @@ header {
     border: none;
     opacity: 0;
     transform: translateY(10px);
-    animation: fadeInNav 1.5s ease forwards;
+    animation: fadeIn 1.5s ease forwards;
   }
 
   .hamburger .line {
@@ -943,63 +975,6 @@ header {
     background: url("../img/work1.png") no-repeat center / contain;
   }
 
-  .contact {
-    padding: 90px 20px;
-    background-color: #EFE4D6;
-  }
-
-  .contact_text, .contact_mail  {
-    font-size: 15px;
-    margin-bottom: 20px;
-  }
-
-  .contact_box {
-    padding: 180px 20px; 
-  }
-
-  .contact_box::before {
-    width: clamp(363px, 60vw, 500px);
-    aspect-ratio: 363 / 363;
-    background: url("../img/contact_frame_sp.png") no-repeat center / contain;
-    z-index: -1;
-  }
-
-  .contact_mail::after {
-    transform: translateX(-50%);
-    width: 86px;
-    height: 41px;
-  }
-
-  .contact_image_sp_left {
-    position: absolute;
-    top: 5%;
-    left: 15%;
-    opacity: 0;
-    transform: translate(-30%, -20%) scale(0.95);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    width: clamp(152px, 15vw, 200px);
-  }
-
-  .contact_image_sp_right {
-    position: absolute;
-    bottom: 20%;
-    right: 15%;
-    opacity: 0;
-    transform: translate(30%, 50%) scale(0.95);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    width: clamp(154px, 15vw, 200px);
-  }
-
-  .contact_image_sp_left.is-show {
-    opacity: 1;
-    transform: translate(-30%, -30%) scale(1);
-  }
-
-  .contact_image_sp_right.is-show {
-    opacity: 1;
-    transform: translate(30%, 30%) scale(1);
-  }
-
   /* =========================
    work（制作物単体）ページ
   ========================= */
@@ -1054,13 +1029,15 @@ header {
     border-top: 1px solid #D4C7B7;
   }
   
-   /* 説明欄左上、スキル表右上、strengths左上、career左上、sketchテキスト左の装飾画像共通 */
+   /* 説明欄左上、スキル表右上、strengths左上、career左上、sketch、thanksテキスト左の装飾画像共通 */
   .work_description_list::before,
   .skill_card_wrapper::before,
   .strengths_wrapper::before,
   .career_wrapper::before,
   .sketch_text_closing::before,
-  .sketch_text_closing::after {
+  .sketch_text_closing::after,
+  .thanks_text::before,
+  .thanks_text::after {
     content: "";
     position: absolute;
     transition:
@@ -1256,7 +1233,8 @@ header {
 
   /* 下部の装飾1 */
   .all_works_deco,
-  .about_deco {
+  .about_deco,
+  .thanks_deco {
     position: relative;
     display: block;
     width: min(100%, 600px);
@@ -1502,7 +1480,9 @@ header {
   }
 
   .career_wrapper.is-show::before,
-  .sketch_text_closing.is-show::after {
+  .sketch_text_closing.is-show::after,
+  .thanks_text.is-show::before,
+  .thanks_text.is-show::after {
     transform: translateY(0) scale(1);
     opacity: 1;
     filter: blur(0);
@@ -1658,6 +1638,123 @@ header {
       filter 1.2s ease;
     transition-delay: 1s;
     background: url("../img/about_deco_sp.png") no-repeat center / contain;
+  }
+
+  /* =========================
+   contactページ
+  ========================= */
+  .contact {
+    padding: 90px 20px 270px;
+    background-color: #EFE4D6;
+    position: relative;
+  }
+
+  .contact_text,
+  .thanks_text {
+    font-size: 15px;
+    margin: 220px 0 120px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 2s ease 1s forwards;
+  }
+
+  .contact_text::after {
+    transform: translateX(-50%);
+    width: 120px;
+    height: 60px;
+  }
+
+  .contact_image_sp_left {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(152px, 15vw, 200px);
+  }
+
+  .contact_image_sp_right {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -20%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(154px, 15vw, 200px);
+  }
+
+  .contact_image_sp_left.is-show {
+    opacity: 1;
+    transform: translate(-50%, -30%) scale(1);
+  }
+
+  .contact_image_sp_right.is-show {
+    opacity: 1;
+    transform: translate(-50%, -30%) scale(1);
+  }
+
+  .form_group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form_group label {
+    font-size: 16px;
+    width: 160px;
+    text-align: left;
+    color: #7a6a60;
+    margin-bottom: 12px;
+  }
+
+  .form_group input,
+  .form_group textarea {
+    width: 100%;
+  }
+
+  /* =========================
+   thanksページ
+  ========================= */
+  .thanks {
+    padding: 90px 20px;
+    background-color: #EFE4D6;
+    position: relative;
+    color: #7A6A60;
+  }
+
+  .thanks_text {
+    margin: 100px 0;
+    animation: fadeIn 1.5s ease forwards;
+    font-size: 15px;
+  }
+
+  .thanks_text::before {
+    top: -90px;
+    left: 0%;
+    width: clamp(290px, 10vw, 350px);
+    aspect-ratio: 310 / 93;
+    background: url("../img/thanks1_sp.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+    opacity: 0;
+  }
+
+  .thanks_text::after {
+    top: 70px;
+    right: 10%;
+    width: clamp(26px, 10vw, 30px);
+    aspect-ratio: 1 / 1;
+    background: url("../img/work4.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+  }
+
+  .thanks_deco {
+    transition:
+      opacity 1.2s ease,
+      transform 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 1s;
+    background: url("../img/thanks_deco_sp.png") no-repeat center / contain;
   }
 }
 
@@ -1849,28 +1946,6 @@ header {
     background: url("../img/heading1.png") no-repeat center/contain;
   }
 
-  .heading--contact::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    transform: translate(-120%, -50%);
-    width: 231px;
-    height: 170px;
-    background: url("../img/heading_contact1.png") no-repeat center/contain;
-  }
-
-  .heading--contact::after {
-    content: "";
-    position: absolute;
-    top: 115%;
-    right: 40%;
-    transform: translate(120%, -50%);
-    width: 202px;
-    height: 132px;
-    background: url("../img/heading_contact2.png") no-repeat center/contain;
-  }
-
   .works_list {
     display: flex;
     gap: 140px;
@@ -2028,62 +2103,6 @@ header {
     background: url("../img/work2.png") no-repeat center / contain;
   }
 
-  .contact {
-    padding: 140px 160px;
-    background-color: #EFE4D6;
-  }
-
-  .contact_text, .contact_mail {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-
-  .contact_box {
-    padding: 180px 20px; 
-  }
-
-  .contact_box::before {
-    width: clamp(1000px, 60vw, 1400px);
-    aspect-ratio: 1049 / 384;
-    background: url("../img/contact_frame.png") no-repeat center / contain;
-  }
-
-  .contact_mail::after {
-    transform: translateX(-50%);
-    width: 148px;
-    height: 70px;
-  }
-
-  .contact_image_left {
-    position: absolute;
-    bottom: 40%;
-    left: 30%;
-    opacity: 0;
-    transform: translate(-160%, 70%) scale(0.95);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    width: clamp(226px, 15vw, 270px);
-  }
-
-  .contact_image_right {
-    position: absolute;
-    bottom: 40%;
-    left: 70%;
-    opacity: 0;
-    transform: translate(60%, 70%) scale(0.95);
-    transition: opacity 1.2s ease, transform 1.2s ease;
-    width: clamp(223px, 15vw, 240px);
-  }
-
-  .contact_image_left.is-show {
-    opacity: 1;
-    transform: translate(-160%, 60%) scale(1);
-  }
-
-  .contact_image_right.is-show {
-    opacity: 1;
-    transform: translate(60%, 60%) scale(1);
-  }
-
   /* =========================
    work（制作物単体）ページ
   ========================= */
@@ -2139,7 +2158,9 @@ header {
   .strengths_wrapper::before,
   .career_wrapper::before,
   .sketch_text_closing::before,
-  .sketch_text_closing::after {
+  .sketch_text_closing::after,
+  .thanks_text::before,
+  .thanks_text::after {
     content: "";
     position: absolute;
     transition:
@@ -2166,7 +2187,9 @@ header {
   .strengths_wrapper.is-show::before,
   .career_wrapper.is-show::before,
   .sketch_text_closing.is-show::before,
-  .sketch_text_closing.is-show::after {
+  .sketch_text_closing.is-show::after,
+  .thanks_text.is-show::before,
+  .thanks_text.is-show::after {
     transform: translateY(0) scale(1);
     opacity: 1;
     filter: blur(0);
@@ -2367,9 +2390,10 @@ header {
     animation: focusIn 2.8s cubic-bezier(0.3, 1, 0.6, 1) forwards;
   }
 
-  /* all_works 下部の装飾1、about 下部の装飾共通 */
+  /* all_works 下部の装飾1、about, thanks 下部の装飾共通 */
   .all_works_deco,
-  .about_deco {
+  .about_deco,
+  .thanks_deco {
     position: relative;
     display: block;
     width: min(100%, 1600px);
@@ -2731,8 +2755,9 @@ header {
     position: relative;
   }
 
-  /* sketchテキスト左の装飾画像 */
-  .sketch_text_closing::before {
+  /* sketch、thanksテキスト左の装飾画像 */
+  .sketch_text_closing::before,
+  .thanks_text::before {
     top: -50px;
     left: 10%;
     width: clamp(106px, 10vw, 140px);
@@ -2741,11 +2766,12 @@ header {
     transform: translateY(40px) scale(0.92) scaleX(-1);
   }
 
-  .sketch_text_closing.is-show::before {
+  .sketch_text_closing.is-show::before,
+  .thanks_text.is-show::before {
     transform: translateY(0) scale(1) scaleX(-1);
   }
 
-  /* sketchテキスト右の装飾画像 */
+  /* sketch、thanksテキスト右の装飾画像 */
   .sketch_text_closing::after {
     top: 50px;
     right: 20%;
@@ -2767,6 +2793,139 @@ header {
       filter 1.2s ease;
     transition-delay: 1s;
     background: url("../img/about_deco.png") no-repeat center / contain;
+  }
+
+  /* =========================
+   contactページ
+  ========================= */
+  .heading--contact::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-120%, -50%);
+    width: 231px;
+    height: 170px;
+    background: url("../img/heading_contact1.png") no-repeat center/contain;
+  }
+
+  .heading--contact::after {
+    content: "";
+    position: absolute;
+    top: 115%;
+    right: 40%;
+    transform: translate(120%, -50%);
+    width: 202px;
+    height: 132px;
+    background: url("../img/heading_contact2.png") no-repeat center/contain;
+  }
+
+  .contact {
+    padding: 140px 160px 280px;
+    background-color: #EFE4D6;
+    position: relative;
+  }
+
+  .contact_text,
+  .thanks_text {
+    font-size: 18px;
+    margin: 50px 0 140px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 2s ease 1s forwards;
+  }
+
+  .contact_text::after {
+    transform: translateX(-50%);
+    width: 148px;
+    height: 70px;
+    margin-top: 20px;
+  }
+
+  .contact_image_left {
+    position: absolute;
+    bottom: 250px;
+    left: 450px;
+    opacity: 0;
+    transform: translate(-160%, 70%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(226px, 15vw, 270px);
+  }
+
+  .contact_image_right {
+    position: absolute;
+    bottom: 250px;
+    right: 200px;
+    opacity: 0;
+    transform: translate(60%, 70%) scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+    width: clamp(226px, 15vw, 270px);
+  }
+
+  .contact_image_left.is-show {
+    opacity: 1;
+    transform: translate(-160%, 60%) scale(1);
+  }
+
+  .contact_image_right.is-show {
+    opacity: 1;
+    transform: translate(60%, 60%) scale(1);
+  }
+
+  .form_group {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .form_group label {
+    font-size: 16px;
+    width: 160px;
+    text-align: left;
+    color: #7a6a60;
+  }
+
+  .form_group input,
+  .form_group textarea {
+    flex: 1;
+  }
+
+  /* =========================
+   thanksページ
+  ========================= */
+  .thanks {
+    padding: 140px 160px;
+    background-color: #EFE4D6;
+    position: relative;
+    color: #7A6A60;
+  }
+
+  .thanks_text {
+    margin: 100px 0;
+    animation: fadeIn 1.5s ease forwards;
+  }
+
+  .thanks_text::before {
+    top: -80px;
+    left: 10%;
+  }
+
+   .thanks_text::after {
+    top: -70px;
+    right: 10%;
+    width: clamp(109px, 10vw, 140px);
+    aspect-ratio: 109 / 147;
+    background: url("../img/thanks1.png") no-repeat center/contain;
+    transform: translateY(40px) scale(0.92);
+  }
+
+  .thanks_deco {
+    transition:
+      opacity 1.2s ease,
+      transform 1.4s ease,
+      filter 1.2s ease;
+    transition-delay: 1s;
+    background: url("../img/thanks_deco.png") no-repeat center / contain;
   }
 }
 
